@@ -7,7 +7,7 @@ public class FirstPersonMovement : MonoBehaviour
     public CharacterController controller;
 
     public float playerHeight = 2.1f;
-    public float speed = 12f;
+    public float speed = 7f;
 
     public float gravity = -9.81f;
     public float jump = 1f;
@@ -48,11 +48,11 @@ public class FirstPersonMovement : MonoBehaviour
         if (isCrouching) 
         {
             controller.height = (float)(playerHeight * 0.25);
-            speed = 12f / 2;
+            speed = (float)7 / 2;
         } 
         else {
             controller.height = playerHeight;
-            speed = 12f;
+            speed = 7;
         }
 
 
