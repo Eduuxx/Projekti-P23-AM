@@ -14,3 +14,4 @@ Monorepo Unity FPS-pelille, jonka teemme Projekti P23 AM-kurssille
 - Eeli
 - Eduard
 - Antti
+- Kaspar
