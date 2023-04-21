@@ -9,7 +9,7 @@ public class FirstPersonMovement : MonoBehaviour
     public float playerHeight = 2.1f;
     public float speed = 7f;
 
-    public float gravity = -9.81f;
+    float gravity = -20f;
     public float jump = 1f;
     public bool isCrouching;
     public bool isRunning;
