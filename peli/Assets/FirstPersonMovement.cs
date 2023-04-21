@@ -12,6 +12,7 @@ public class FirstPersonMovement : MonoBehaviour
     public float gravity = -9.81f;
     public float jump = 1f;
     public bool isCrouching;
+    public bool isRunning;
 
     public Transform groundCheck;
     public float groundDistance = 0.4f;
@@ -33,6 +34,14 @@ public class FirstPersonMovement : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
+        // Check if running
+        if (Input.GetKey(KeyCode.LeftShift) && !isCrouching)
+        {
+            isRunning = true;
+        } else { 
+            isRunning = false;
+        }
+
         // Check if crouching
         if (Input.GetKeyDown(KeyCode.C))
         {
@@ -40,22 +49,24 @@ public class FirstPersonMovement : MonoBehaviour
             {
                 isCrouching = false;
             }
-            else {
-                isCrouching = true;
-            }
+            else { isCrouching = true; }
         }
 
-        // Do stuff if crouching
+        // Do stuff on different movement "modes" 
         if (isCrouching) 
         {
             controller.height = (float)(playerHeight * 0.25);
             speed = (float)7 / 2;
-        } 
+        } else if (isRunning)
+        {
+            speed = 10;
+        }
         else {
             controller.height = playerHeight;
             speed = 7;
         }
 
+        // Actually moving is handled from here
         Vector3 move = transform.right * x + transform.forward * z;
         controller.Move(move * speed * Time.deltaTime);
 
