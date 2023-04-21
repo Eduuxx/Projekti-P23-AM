@@ -33,7 +33,7 @@ public class FirstPersonMovement : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
-
+        // Check if crouching
         if (Input.GetKeyDown(KeyCode.C))
         {
             if (isCrouching)
@@ -45,6 +45,7 @@ public class FirstPersonMovement : MonoBehaviour
             }
         }
 
+        // Do stuff if crouching
         if (isCrouching) 
         {
             controller.height = (float)(playerHeight * 0.25);
@@ -55,12 +56,10 @@ public class FirstPersonMovement : MonoBehaviour
             speed = 7;
         }
 
-
         Vector3 move = transform.right * x + transform.forward * z;
-
         controller.Move(move * speed * Time.deltaTime);
 
-        if(Input.GetButtonDown("Jump") && isGrounded)
+        if(Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jump * -2f * gravity);
         }
