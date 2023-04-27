@@ -8,20 +8,21 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 playerVelocity;
 
     private bool isGrounded;
-    public bool isMoving;
+    private bool isCrouching = false;
 
     public float speed = 2f;
+    public float crouchSpeed = 1f;
     public float gravity = -9.8f;
     public float jumpHeight = 1f;
     public float speedBoost = 1.5f;
 
     private Vector3 crouchScale = new Vector3(1, 0.5f, 1);
     private Vector3 playerScale = new Vector3(1, 1f, 1);
+
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
-
     }
 
     // Update is called once per frame
@@ -31,58 +32,30 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
+            isCrouching = true;
             transform.localScale = crouchScale;
             transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
-            speed -= 1f;
+            speed -= crouchSpeed;
         }
+
         if (Input.GetKeyUp(KeyCode.LeftControl))
         {
+            isCrouching = false;
             transform.localScale = playerScale;
             transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
-            speed += 1f;
-        }
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-            speed += speedBoost;
-        else if (Input.GetKeyUp(KeyCode.LeftShift))
-            speed -= speedBoost;
-
-        if (Input.GetKeyDown("w"))
-        {
-            isMoving = true;
+            speed += crouchSpeed;
         }
 
-        if (Input.GetKeyUp("w"))
-        {
-            isMoving = false;
-        }
-        if (Input.GetKeyDown("a"))
-        {
-            isMoving = true;
-        }
-
-        if (Input.GetKeyUp("a"))
-        {
-            isMoving = false;
-        }
-        if (Input.GetKeyDown("s"))
-        {
-            isMoving = true;
-        }
-
-        if (Input.GetKeyUp("s"))
-        {
-            isMoving = false;
-        }
-        if (Input.GetKeyDown("d"))
-        {
-            isMoving = true;
-        }
-
-        if (Input.GetKeyUp("d"))
-        {
-            isMoving = false;
-        }
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.LeftControl))
+            speed = crouchSpeed;
+        else if (Input.GetKey(KeyCode.LeftShift))
+            speed = speedBoost;
+        else if (isCrouching)
+            speed = crouchSpeed;
+        else
+            speed = 2f;
     }
+
     public void ProcessMove(Vector2 input)
     {
         Vector3 moveDirection = Vector3.zero;
@@ -102,5 +75,4 @@ public class PlayerMovement : MonoBehaviour
             playerVelocity.y = Mathf.Sqrt(jumpHeight * -3.0f * gravity);
         }
     }
-
 }
