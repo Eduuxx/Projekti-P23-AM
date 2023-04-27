@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float speed = 1.5f;
     public float gravity = -9.8f;
-    public float jumpHeight = 0.5f;
+    public float jumpHeight = 1;
 
     private Vector3 crouchScale = new Vector3(1, 0.5f, 1);
     private Vector3 playerScale = new Vector3(1, 1f, 1);
