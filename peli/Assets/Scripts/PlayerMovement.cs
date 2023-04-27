@@ -8,10 +8,12 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 playerVelocity;
 
     private bool isGrounded;
+    public bool isMoving;
 
-    public float speed = 1.5f;
+    public float speed = 2f;
     public float gravity = -9.8f;
-    public float jumpHeight = 1;
+    public float jumpHeight = 1f;
+    public float speedBoost = 1.5f;
 
     private Vector3 crouchScale = new Vector3(1, 0.5f, 1);
     private Vector3 playerScale = new Vector3(1, 1f, 1);
@@ -37,6 +39,47 @@ public class PlayerMovement : MonoBehaviour
             transform.localScale = playerScale;
             transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
         }
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+            speed += speedBoost;
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
+            speed -= speedBoost;
+
+        if (Input.GetKeyDown("w"))
+        {
+            isMoving = true;
+        }
+
+        if (Input.GetKeyUp("w"))
+        {
+            isMoving = false;
+        }
+        if (Input.GetKeyDown("a"))
+        {
+            isMoving = true;
+        }
+
+        if (Input.GetKeyUp("a"))
+        {
+            isMoving = false;
+        }
+        if (Input.GetKeyDown("s"))
+        {
+            isMoving = true;
+        }
+
+        if (Input.GetKeyUp("s"))
+        {
+            isMoving = false;
+        }
+        if (Input.GetKeyDown("d"))
+        {
+            isMoving = true;
+        }
+
+        if (Input.GetKeyUp("d"))
+        {
+            isMoving = false;
+        }
     }
     public void ProcessMove(Vector2 input)
     {
@@ -49,6 +92,7 @@ public class PlayerMovement : MonoBehaviour
             playerVelocity.y = -2f;
         controller.Move(playerVelocity * Time.deltaTime);
     }
+
     public void Jump()
     {
         if (isGrounded)
