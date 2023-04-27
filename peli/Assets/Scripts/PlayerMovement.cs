@@ -33,11 +33,13 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.localScale = crouchScale;
             transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
+            speed -= 1f;
         }
         if (Input.GetKeyUp(KeyCode.LeftControl))
         {
             transform.localScale = playerScale;
             transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
+            speed += 1f;
         }
         if (Input.GetKeyDown(KeyCode.LeftShift))
             speed += speedBoost;
