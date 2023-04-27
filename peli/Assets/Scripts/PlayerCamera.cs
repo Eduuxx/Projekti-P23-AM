@@ -7,9 +7,9 @@ public class PlayerCamera : MonoBehaviour
     public Camera cam;
     private float xRotation = 0f;
 
-    public float xSensitivity = 7f;
-    public float ySensitivity = 7f;
-    
+    public float xSensitivity = 8f;
+    public float ySensitivity = 8f;
+
 
     void Start()
     {
