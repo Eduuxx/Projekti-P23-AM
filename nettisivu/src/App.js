@@ -12,7 +12,7 @@ function App() {
       }}
     >
       <div className="w-full text-lime-400 font-bold text-6xl text-center mt-16">
-        ZOMBIE VIOLATION
+        NIGHTFALL
       </div>
     </div>
   );
