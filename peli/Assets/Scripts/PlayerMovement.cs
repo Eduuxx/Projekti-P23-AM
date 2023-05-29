@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.LeftControl))
             speed = crouchSpeed;
         else if (Input.GetKey(KeyCode.LeftShift))
-            speed = speedBoost;
+            speed = 2f + speedBoost;
         else if (isCrouching)
             speed = crouchSpeed;
         else
@@ -58,7 +58,9 @@ public class PlayerMovement : MonoBehaviour
         Vector3 moveDirection = Vector3.zero;
         moveDirection.x = Input.GetAxis("Horizontal");
         moveDirection.z = Input.GetAxis("Vertical");
-        controller.Move(transform.TransformDirection(moveDirection) * speed * Time.deltaTime);
+
+        controller.Move(transform.TransformDirection(moveDirection) * speed * Time.deltaTime); // WASD triggered movement
+
         playerVelocity.y += gravity * Time.deltaTime;
 
         if (isGrounded && Input.GetKey("space")) {
@@ -67,6 +69,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (isGrounded && playerVelocity.y < 0)
             playerVelocity.y = -2f;
-        controller.Move(playerVelocity * Time.deltaTime);
+
+        controller.Move(playerVelocity * Time.deltaTime); // Gravity movement
     }
 }
