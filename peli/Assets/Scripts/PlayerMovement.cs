@@ -10,11 +10,12 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;
     private bool isCrouching = false;
 
-    public float speed = 2f;
+    public float currentSpeed = 4f;
+    public float walkSpeed = 4f;
     public float crouchSpeed = 1f;
     public float gravity = -9.8f;
     public float jumpHeight = 1f;
-    public float speedBoost = 1.5f;
+    public float runningSpeedBoost = 1.5f;
 
     private Vector3 crouchScale = new Vector3(1, 0.5f, 1);
     private Vector3 playerScale = new Vector3(1, 1f, 1);
@@ -35,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
             isCrouching = true;
             transform.localScale = crouchScale;
             transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
-            speed -= crouchSpeed;
+            currentSpeed -= crouchSpeed;
         }
 
         if (Input.GetKeyUp(KeyCode.LeftControl))
@@ -43,23 +44,23 @@ public class PlayerMovement : MonoBehaviour
             isCrouching = false;
             transform.localScale = playerScale;
             transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
-            speed += crouchSpeed;
+            currentSpeed += crouchSpeed;
         }
 
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.LeftControl))
-            speed = crouchSpeed;
+            currentSpeed = crouchSpeed;
         else if (Input.GetKey(KeyCode.LeftShift))
-            speed = 2f + speedBoost;
+            currentSpeed = walkSpeed + (runningSpeedBoost / 2);
         else if (isCrouching)
-            speed = crouchSpeed;
+            currentSpeed = crouchSpeed;
         else
-            speed = 2f;
+            currentSpeed = 4f;
 
         Vector3 moveDirection = Vector3.zero;
         moveDirection.x = Input.GetAxis("Horizontal");
         moveDirection.z = Input.GetAxis("Vertical");
 
-        controller.Move(transform.TransformDirection(moveDirection) * speed * Time.deltaTime); // WASD triggered movement
+        controller.Move(transform.TransformDirection(moveDirection) * currentSpeed * Time.deltaTime); // WASD triggered movement
 
         playerVelocity.y += gravity * Time.deltaTime;
 

@@ -9,8 +9,8 @@ public class PlayerCamera : MonoBehaviour
     public float mouseSensitivity = 2f;
 
     // Private
-    public float minTurnAngle = -90.0f;
-    public float maxTurnAngle = 90.0f;
+    private float minTurnAngle = -90.0f;
+    private float maxTurnAngle = 90.0f;
     private float rotX; // vertical
 
     void Start()
