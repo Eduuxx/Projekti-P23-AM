@@ -4,28 +4,32 @@ using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour
 {
-    public Camera cam;
-    private float xRotation = 0f;
+    // Public
+    public Transform player;
+    public float mouseSensitivity = 2f;
 
-    public float xSensitivity = 8f;
-    public float ySensitivity = 8f;
-
+    // Private
+    public float minTurnAngle = -90.0f;
+    public float maxTurnAngle = 90.0f;
+    private float rotX; // vertical
 
     void Start()
     {
+        // Lock and Hide the Cursor
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
-    public void ProcessLook(Vector2 input)
+
+    void Update()
     {
-        float mouseX = input.x;
-        float mouseY = input.y;
+        // get the mouse inputs
+        float y = Input.GetAxis("Mouse X") * mouseSensitivity;
+        rotX += Input.GetAxis("Mouse Y") * mouseSensitivity;
 
-        xRotation -= (mouseY * Time.deltaTime) * ySensitivity;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+        // clamp the vertical rotation
+        rotX = Mathf.Clamp(rotX, minTurnAngle, maxTurnAngle);
 
-        cam.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
-
-        transform.Rotate(Vector3.up * (mouseX * Time.deltaTime) * xSensitivity);
+        // rotate the camera
+        transform.eulerAngles = new Vector3(-rotX, transform.eulerAngles.y + y, 0);
     }
 }

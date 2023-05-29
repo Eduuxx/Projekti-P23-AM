@@ -54,6 +54,15 @@ public class PlayerMovement : MonoBehaviour
             speed = crouchSpeed;
         else
             speed = 2f;
+
+        Vector3 moveDirection = Vector3.zero;
+        moveDirection.x = Input.GetAxis("Horizontal");
+        moveDirection.z = Input.GetAxis("Vertical");
+        controller.Move(transform.TransformDirection(moveDirection) * speed * Time.deltaTime);
+        playerVelocity.y += gravity * Time.deltaTime;
+        if (isGrounded && playerVelocity.y < 0)
+            playerVelocity.y = -2f;
+        controller.Move(playerVelocity * Time.deltaTime);
     }
 
     public void ProcessMove(Vector2 input)
