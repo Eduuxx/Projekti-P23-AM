@@ -19,8 +19,11 @@ public class GunDamage : MonoBehaviour
     public void Shoot()
     {
         Ray gunRay = new Ray(playerCamera.position, playerCamera.forward);
+
+        // Checks if there was something which our bullet hit
         if (Physics.Raycast(gunRay, out RaycastHit hitInfo, bulletRange))
         {
+            // Check if bullet hit an Entity
             if (hitInfo.collider.gameObject.TryGetComponent(out Entity enemy))
             {
                 // No point firing if already dead
