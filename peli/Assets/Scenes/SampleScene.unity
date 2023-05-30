@@ -6408,6 +6408,9 @@ GameObject:
   - component: {fileID: 908059585}
   - component: {fileID: 908059588}
   - component: {fileID: 908059587}
+  - component: {fileID: 908059590}
+  - component: {fileID: 908059589}
+  - component: {fileID: 908059591}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -6483,6 +6486,46 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 908059586}
   mouseSensitivity: 1.5
+--- !u!114 &908059589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908059583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6d7336c64800c541ba07db450d643ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &908059590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908059583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6878db244edf41f47889111a5aba32f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthBar: {fileID: 908059589}
+--- !u!114 &908059591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908059583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 392bb23f5343f3b4fb36f4a455c9e0f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 100
+  alive: 1
+  name: Player
 --- !u!1001 &913349155
 PrefabInstance:
   m_ObjectHideFlags: 0
