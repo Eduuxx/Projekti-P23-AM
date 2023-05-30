@@ -18,11 +18,12 @@ public class Entity : MonoBehaviour
         set
         {
             hp = value;
+            Debug.Log(gameObject.name + " has currently " + hp + " hp.");
 
             if (hp <= 0f)
             {
                 alive = false;
-                Debug.Log(gameObject.name + " is alive: " + alive);
+                Debug.Log(gameObject.name + " died ");
             }
         }
     }

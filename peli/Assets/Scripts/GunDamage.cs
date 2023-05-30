@@ -24,7 +24,7 @@ public class GunDamage : MonoBehaviour
             if (hitInfo.collider.gameObject.TryGetComponent(out Entity enemy))
             {
                 // No point firing if already dead
-                if (!enemy.alive) 
+                if (enemy.alive) 
                 {
                     enemy.HP -= damage;
                 }
