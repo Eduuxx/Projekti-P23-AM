@@ -83,7 +83,8 @@ public class PlayerMovement : MonoBehaviour
         {
             if (maxYVelocity < -7f)
             {
-                playerEntity.HP -= 20;
+                // Apply fall damage
+                playerEntity.takeDamage(20);
             }
             playerVelocity.y = -2f;
             maxYVelocity = playerVelocity.y; // Reset velocity when on ground

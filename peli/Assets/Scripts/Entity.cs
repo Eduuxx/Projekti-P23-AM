@@ -26,6 +26,17 @@ public class Entity : MonoBehaviour
                 Debug.Log(gameObject.name + " died ");
             }
         }
+        
+    }
+
+    public void takeDamage(int damageCount) 
+    {
+        HP = hp - damageCount;
+    }
+
+    public void healDamage(int healCount)
+    {
+        HP = hp + healCount;
     }
 
     // Start is called before the first frame update

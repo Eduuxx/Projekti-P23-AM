@@ -28,7 +28,7 @@ public class PlayerBehaviour : MonoBehaviour
             }
             else
             {
-                playerEntity.HP += 30;
+                playerEntity.healDamage(30);
             }
         }
     }
