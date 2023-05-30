@@ -9,6 +9,8 @@ public class Entity : MonoBehaviour
     public string name;
     private float hp;
 
+    HealBarScript _healthBar;
+
     public float HP
     {
         get
@@ -32,11 +34,13 @@ public class Entity : MonoBehaviour
     public void takeDamage(int damageCount) 
     {
         HP = hp - damageCount;
+        _healthBar.SetHealth((int) hp);
     }
 
     public void healDamage(int healCount)
     {
         HP = hp + healCount;
+        _healthBar.SetHealth((int) hp);
     }
 
     // Start is called before the first frame update
