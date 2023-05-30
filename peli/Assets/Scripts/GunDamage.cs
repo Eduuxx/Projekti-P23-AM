@@ -26,8 +26,8 @@ public class GunDamage : MonoBehaviour
             // Check if bullet hit an Entity
             if (hitInfo.collider.gameObject.TryGetComponent(out Entity enemy))
             {
-                // No point firing if already dead
-                if (enemy.alive) 
+                // Don't take damage if not alive and if is a player
+                if (enemy.alive && enemy.name != "Player") 
                 {
                     enemy.HP -= damage;
                 }
