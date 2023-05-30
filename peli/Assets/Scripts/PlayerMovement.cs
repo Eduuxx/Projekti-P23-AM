@@ -8,9 +8,11 @@ public class PlayerMovement : MonoBehaviour
 {
     private CharacterController controller;
     private Vector3 playerVelocity;
+    private Entity playerEntity;
 
     private bool isGrounded;
     private bool isCrouching = false;
+    private float maxYVelocity;
 
     public float currentSpeed = 4f;
     public float walkSpeed = 4f;
@@ -26,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        playerEntity = GetComponent<Entity>();
     }
 
     // Update is called once per frame
@@ -66,14 +69,32 @@ public class PlayerMovement : MonoBehaviour
 
         playerVelocity.y += gravity * Time.deltaTime;
 
+        if (!isGrounded)
+        {
+            maxYVelocity = playerVelocity.y < maxYVelocity ? playerVelocity.y : maxYVelocity; // Always change value to the lowest velocity, so it can be checked against later
+        }
+
         if (isGrounded && Input.GetKey("space")) {
             playerVelocity.y = Mathf.Sqrt(jumpHeight * -3.0f * gravity);
+            maxYVelocity = -2f; // Reset velocity before new jumps
         }
 
         if (isGrounded && playerVelocity.y < 0)
+        {
+            if (maxYVelocity < -7f)
+            {
+                applyFallDamage();
+            }
             playerVelocity.y = -2f;
+            maxYVelocity = playerVelocity.y; // Reset velocity when on ground
 
+        }
         controller.Move(playerVelocity * Time.deltaTime); // Gravity movement
+    }
+
+    void applyFallDamage()
+    {
+        playerEntity.HP -= 20;
     }
 }
 }
