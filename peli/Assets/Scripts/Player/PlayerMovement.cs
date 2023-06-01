@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
 {
     private CharacterController controller;
     private Vector3 playerVelocity;
-    private Entity playerEntity;
+    private Player playerEntity;
 
     private bool isGrounded;
     private bool isCrouching = false;
@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        playerEntity = GetComponent<Entity>();
+        playerEntity = GetComponent<Player>();
     }
 
     // Update is called once per frame
@@ -53,13 +53,33 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.LeftControl))
+        {
             currentSpeed = crouchSpeed;
+        }
+
         else if (Input.GetKey(KeyCode.LeftShift))
-            currentSpeed = walkSpeed + (runningSpeedBoost / 2);
+        {
+            if (!playerEntity.isExhausted)
+            {
+                currentSpeed = walkSpeed + (runningSpeedBoost / 2) + 2;
+
+                playerEntity.takeStamina((float)0.4);
+                playerEntity.updateStaminaBar();
+            }
+            else currentSpeed = walkSpeed;
+        }
+
         else if (isCrouching)
+        {
             currentSpeed = crouchSpeed;
-        else
+        }
+
+        else 
+        {
             currentSpeed = 4f;
+            playerEntity.giveStamina((float)0.2);
+            playerEntity.updateStaminaBar();
+        }
 
         Vector3 moveDirection = Vector3.zero;
         moveDirection.x = Input.GetAxis("Horizontal");
@@ -81,6 +101,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (isGrounded && playerVelocity.y < 0)
         {
+            // Check if player suffered sufficiently big drop
             if (maxYVelocity < -7f)
             {
                 // Apply fall damage
