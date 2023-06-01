@@ -26,8 +26,9 @@ public class Player : Entity
     // Start is called before the first frame update
     void Start()
     {
+        // Set HP and Stamina to max on the start of a new game
         HP = maxHP;
-       _staminaBar.SetMaxStamina(maxStamina);
+        Stamina = maxStamina;
     }
 
     public void takeStamina(float staminaToReduce) 

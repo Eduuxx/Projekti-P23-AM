@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-    private Entity playerEntity;
+    private Player playerEntity;
 
     void Start()
     {
-        playerEntity = GetComponent<Entity>();
+        playerEntity = GetComponent<Player>();
     }
 
     
