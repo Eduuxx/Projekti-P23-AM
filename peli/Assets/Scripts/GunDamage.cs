@@ -29,7 +29,7 @@ public class GunDamage : MonoBehaviour
                 // Don't take damage if not alive and if is a player
                 if (enemy.alive && enemy.name != "Player") 
                 {
-                    enemy.HP -= damage;
+                    enemy.takeDamage((int)damage);
                 }
             }
         }

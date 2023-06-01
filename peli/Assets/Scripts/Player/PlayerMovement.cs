@@ -85,6 +85,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 // Apply fall damage
                 playerEntity.takeDamage(20);
+                // Update health bar
+                playerEntity.updateHealthBar();
             }
             playerVelocity.y = -2f;
             maxYVelocity = playerVelocity.y; // Reset velocity when on ground

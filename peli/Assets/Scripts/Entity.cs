@@ -9,7 +9,7 @@ public class Entity : MonoBehaviour
     public string name;
     private float hp;
 
-    HealBarScript _healthBar;
+    public HealBarScript _healthBar;
 
     public float HP
     {
@@ -34,12 +34,20 @@ public class Entity : MonoBehaviour
     public void takeDamage(int damageCount) 
     {
         HP = hp - damageCount;
-        _healthBar.SetHealth((int) hp);
     }
 
     public void healDamage(int healCount)
     {
         HP = hp + healCount;
+    }
+
+    public void healFully()
+    {
+        HP = maxHP;
+    }
+
+    public void updateHealthBar()
+    {
         _healthBar.SetHealth((int) hp);
     }
 

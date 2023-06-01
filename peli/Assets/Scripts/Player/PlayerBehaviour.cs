@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-    [SerializeField] HealBarScript _healthBar;
     private Entity playerEntity;
 
     void Start()
@@ -20,27 +19,17 @@ public class PlayerBehaviour : MonoBehaviour
         {
             // TODO SIMPLE INVENTORY FOR MEDKITS
             Debug.Log("4 pressed");
-            // Check if using a medkit would heal for too much hp
+            // Check if using a medkit would heal over max hp
             if (playerEntity.HP + 30 > playerEntity.maxHP)
             {
                 // In that case just set HP to max hp
-                playerEntity.HP = playerEntity.maxHP;
+                playerEntity.healFully();
             }
             else
             {
                 playerEntity.healDamage(30);
+                playerEntity.updateHealthBar();
             }
         }
-    }
-
-    private void PlayerTakeDmg(int dmg)
-    {
-        GameManager.gameManager._playerHealth.DmgUnit(dmg);
-        _healthBar.SetHealth(GameManager.gameManager._playerHealth.Health);
-    }
-    private void PlayerHeal(int healing)
-    {
-        GameManager.gameManager._playerHealth.HealUnit(healing);
-        _healthBar.SetHealth(GameManager.gameManager._playerHealth.Health);
     }
 }
