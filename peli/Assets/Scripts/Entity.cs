@@ -6,7 +6,6 @@ public class Entity : MonoBehaviour
 {
     public float maxHP;
     public bool alive;
-    public string name;
     private float hp;
 
     public HealBarScript _healthBar;
@@ -20,16 +19,18 @@ public class Entity : MonoBehaviour
         set
         {
             hp = value;
-            Debug.Log(gameObject.name + " has currently " + hp + " hp.");
 
+            // Check Death
             if (hp <= 0f)
             {
                 alive = false;
-                Debug.Log(gameObject.name + " died ");
+                onDeath();
             }
         }
         
     }
+
+    public virtual void onDeath() {}
 
     public void takeDamage(int damageCount) 
     {
