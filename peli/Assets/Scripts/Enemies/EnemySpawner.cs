@@ -21,7 +21,7 @@ public class EnemySpawner : MonoBehaviour
             return;
 
         Vector3 spawnPosition = transform.position + Random.insideUnitSphere * 5;
-        spawnPosition.y = 0; // Ensure enemies spawn at ground level
+        spawnPosition.y = 1; // Ensure enemies spawn at ground level
 
         GameObject enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
         Enemy enemyScript = enemy.GetComponent<Enemy>();
