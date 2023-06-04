@@ -9,7 +9,6 @@ public class Enemy : Entity
     {
         this.maxHP = 100;
         HP = maxHP;
-        InvokeRepeating("UpdateDestination", 0f, 0.5f);
     }
 
     private void OnDestroy()
