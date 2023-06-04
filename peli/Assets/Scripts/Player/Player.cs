@@ -17,11 +17,9 @@ public class Player : Entity
         }
         set
         {
-            if (value < maxStamina)
+            if (value <= maxStamina)
             {
                 stamina = value;
-
-                Debug.Log("stamina is now " + stamina);
                 isExhausted = stamina <= 0f ? true : false;
             }
 
