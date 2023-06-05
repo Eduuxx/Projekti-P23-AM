@@ -4,22 +4,31 @@ using UnityEngine;
 
 public class BiteRadius : MonoBehaviour
 {
+    private Enemy self;
     private Player playerInRadius;
+    public bool triesToBite = true;
 
     // Start is called before the first frame update
     void Start()
     {
+        self = GetComponentInParent<Enemy>();
         StartCoroutine(doBiteDamage());
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!triesToBite)
+        {
+            StopCoroutine(doBiteDamage());
+        }
     }
 
     IEnumerator doBiteDamage() {
         for (;;)
         {
+            if (!triesToBite) break; // Leave loop if dead
+
             if (playerInRadius != null)
             {
                 Debug.Log("Pelaaja tarpeeksi lähellä purtavaksi!");

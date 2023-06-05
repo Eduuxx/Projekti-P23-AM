@@ -4,11 +4,19 @@ using UnityEngine.AI;
 public class Enemy : Entity
 {
     private EnemySpawner spawner; // Reference to the spawner
+    private CapsuleCollider collider;
+    private BiteRadius biter;
+    private EnemyAI aiController;
+    private Animator animator;
     [System.NonSerialized]
     public Player playerInRadius = null;
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
+        biter = GetComponentInChildren<BiteRadius>();
+        aiController = GetComponent<EnemyAI>();
+        collider = GetComponent<CapsuleCollider>();
         this.maxHP = 100;
         HP = maxHP;
     }
@@ -28,7 +36,9 @@ public class Enemy : Entity
 
     public override void onDeath() 
     {
-        Debug.Log("died");
-        Destroy(gameObject);
+        aiController.triesToTarget = false;
+        biter.triesToBite = false;
+        collider.enabled = false;
+        animator.Play("Died");
     }
 }

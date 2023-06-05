@@ -6,6 +6,7 @@ public class EnemyAI : MonoBehaviour
 {
     public UnityEngine.AI.NavMeshAgent agent;
     public Player target;
+    public bool triesToTarget = true;
     private Transform targetTransform;
 
     // Start is called before the first frame update
@@ -33,6 +34,9 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moveToTarget();
+        if (triesToTarget)
+        {
+            moveToTarget();
+        }
     }
 }

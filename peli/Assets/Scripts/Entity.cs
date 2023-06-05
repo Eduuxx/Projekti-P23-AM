@@ -47,6 +47,11 @@ public class Entity : MonoBehaviour
         HP = maxHP;
     }
 
+    public void kill()
+    {
+        HP = 0f;
+    }
+
     public void updateHealthBar()
     {
         _healthBar.SetHealth((int) hp);
