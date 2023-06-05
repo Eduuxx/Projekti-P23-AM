@@ -4,6 +4,7 @@ using UnityEngine.AI;
 public class Enemy : Entity
 {
     private EnemySpawner spawner; // Reference to the spawner
+    [System.NonSerialized]
     public Player playerInRadius = null;
 
     private void Start()
@@ -27,6 +28,7 @@ public class Enemy : Entity
 
     public override void onDeath() 
     {
+        Debug.Log("died");
         Destroy(gameObject);
     }
 }
