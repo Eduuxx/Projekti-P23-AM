@@ -9637,6 +9637,7 @@ GameObject:
   - component: {fileID: 1361471998}
   - component: {fileID: 1361471997}
   - component: {fileID: 1361471999}
+  - component: {fileID: 1361472000}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -9657,7 +9658,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1109519685}
-  - {fileID: 1477352930}
   m_Father: {fileID: 661929712}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 3.787, y: 95.334, z: 4.098}
@@ -9867,6 +9867,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1361472000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1361471992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d22f8757465bca489f39d09a4c28415, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1375101716
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10926,37 +10938,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d53bdb06508e5545a059e0412b2eee2, type: 3}
---- !u!1 &1477352929
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1477352930}
-  m_Layer: 0
-  m_Name: MuzzleFlashPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1477352930
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1477352929}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1837, y: 0.0777, z: -0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1361471993}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1481915433 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400008, guid: 6b9fd6eae9eb0d546ae14cdaee6d1156, type: 3}
@@ -15492,11 +15473,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6492032136507418094, guid: fb86131a1a5ee5a439b196a9c9a70d5b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.87
+      value: -7.03
       objectReference: {fileID: 0}
     - target: {fileID: 6492032136507418094, guid: fb86131a1a5ee5a439b196a9c9a70d5b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 154.151
+      value: 153.81
       objectReference: {fileID: 0}
     - target: {fileID: 6492032136507418094, guid: fb86131a1a5ee5a439b196a9c9a70d5b, type: 3}
       propertyPath: m_LocalRotation.w
