@@ -4,6 +4,7 @@ using UnityEngine.AI;
 public class Enemy : Entity
 {
     private EnemySpawner spawner; // Reference to the spawner
+    public Player playerInRadius = null;
 
     private void Start()
     {
