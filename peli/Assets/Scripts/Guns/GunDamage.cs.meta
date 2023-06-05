@@ -3,7 +3,9 @@ guid: 31803054e6981a5419b79efd2cd36ccb
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - BulletTrail: {instanceID: 0}
+  - BulletSpawnPoint: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

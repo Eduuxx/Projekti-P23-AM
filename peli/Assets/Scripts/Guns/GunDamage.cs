@@ -9,6 +9,11 @@ public class GunDamage : MonoBehaviour
     
     private Transform playerCamera;
 
+    [SerializeField]
+    private TrailRenderer BulletTrail;
+    [SerializeField]
+    private Transform BulletSpawnPoint;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +28,9 @@ public class GunDamage : MonoBehaviour
         // Checks if there was something which our bullet hit
         if (Physics.Raycast(gunRay, out RaycastHit hitInfo, bulletRange))
         {
+            TrailRenderer trail = Instantiate(BulletTrail, BulletSpawnPoint.position, Quaternion.identity);
+            StartCoroutine(SpawnTrail(trail, hitInfo));
+
             // Check if bullet hit an Entity
             if (hitInfo.collider.gameObject.TryGetComponent(out Entity enemy))
             {
@@ -33,6 +41,22 @@ public class GunDamage : MonoBehaviour
                 }
             }
         }
-        
+    }
+
+    private IEnumerator SpawnTrail(TrailRenderer Trail, RaycastHit Hit)
+    {
+        float time = 0;
+        Vector3 startPosition = Trail.transform.position;
+
+        while (time < 1)
+        {
+            Trail.transform.position = Vector3.Lerp(startPosition, Hit.point, time);
+            time += Time.deltaTime / Trail.time;
+
+            yield return null;
+        }
+
+        Trail.transform.position = Hit.point;
+        Destroy(Trail.gameObject, Trail.time);
     }
 }
