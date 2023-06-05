@@ -9775,7 +9775,7 @@ MonoBehaviour:
   ammoUIManager: {fileID: 443032286}
   muzzleFlashPrefab: {fileID: 748781637555137343, guid: 0cf7a2b8a8bf3424ca855eed0216a54b, type: 3}
   barrelTransform: {fileID: 1109519685}
-  fireDelay: 0.2
+  fireDelay: 0.17
   magazineSize: 13
   automatic: 0
   shootSfx: {fileID: 8300000, guid: 65201ddabb4144f6a8fb9480120b7656, type: 3}
@@ -13446,7 +13446,6 @@ MonoBehaviour:
   enemyPrefab: {fileID: 1409245778}
   maxEnemies: 10
   spawnDelay: 2
-  playersInRadius: 0
 --- !u!4 &1848425524
 Transform:
   m_ObjectHideFlags: 0
