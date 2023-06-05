@@ -8,7 +8,6 @@ public class Gun : MonoBehaviour
     // Publics
     public UnityEvent onFireEvent;
     private AudioSource audioSource;
-    private AudioClip gunSound = null;
     public float fireDelay;
     public bool automatic;
 
@@ -30,6 +29,7 @@ public class Gun : MonoBehaviour
             {
                 if (currentFireDelay <= 0f)
                 {
+                    doGunSound();
                     onFireEvent.Invoke();
                     currentFireDelay = fireDelay;
                 }
@@ -41,13 +41,17 @@ public class Gun : MonoBehaviour
             {
                 if (currentFireDelay <= 0f)
                 {
-                    Debug.Log("Succesful gun fire!");
-                    audioSource.Play();
+                    doGunSound();
                     onFireEvent.Invoke();
                     currentFireDelay = fireDelay;
                 }
             }
         }
         currentFireDelay -= Time.deltaTime;
+    }
+
+    void doGunSound()
+    {
+        audioSource.Play();
     }
 }
