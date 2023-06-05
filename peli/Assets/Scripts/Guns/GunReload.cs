@@ -7,6 +7,7 @@ public class GunReload : MonoBehaviour
     private Gun gun;
     public float reloadDelayInSeconds = 2.2f;
     public AudioClip reloadSfx;
+    public bool isReloading = false;
     void Start()
     {
         gun = GetComponent<Gun>();
@@ -14,8 +15,9 @@ public class GunReload : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown("r") && gun.magazineSize != gun.remainingBullets)
+        if (Input.GetKeyDown("r") && gun.magazineSize != gun.remainingBullets && !isReloading)
         {
+            isReloading = true;
             StartCoroutine(reloadGun());
         }
     }
@@ -27,6 +29,8 @@ public class GunReload : MonoBehaviour
         gun.remainingBullets = gun.magazineSize;
         gun.ammoUIManager.setMaxAmmo(gun.magazineSize);
         gun.ammoUIManager.setCurrentAmmo(gun.remainingBullets);
+
+        isReloading = false;
     }
 
     void doReloadSound(double volume)
