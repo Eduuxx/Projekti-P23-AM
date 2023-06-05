@@ -12,12 +12,6 @@ public class DetectionRadius : MonoBehaviour
        self = GetComponentInParent<Enemy>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        Debug.Log(self.playerInRadius);
-    }
-
     void OnTriggerEnter(Collider other) {
         if (other.tag == "Player") self.playerInRadius = GameObject.FindWithTag("Player").GetComponent<Player>();
     }

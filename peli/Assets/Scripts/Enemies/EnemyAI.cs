@@ -7,11 +7,15 @@ public class EnemyAI : MonoBehaviour
     public UnityEngine.AI.NavMeshAgent agent;
     public Player target;
     public bool triesToTarget = true;
+    private Animator animator;
+    private Enemy self;
     private Transform targetTransform;
 
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponentInParent<Animator>();
+        self = GetComponentInParent<Enemy>();
         targetTransform = GameObject.FindWithTag("GroundChecker").transform;
     }
 
@@ -26,17 +30,29 @@ public class EnemyAI : MonoBehaviour
 
     private void moveToTarget()
     {
+        agent.isStopped = false;
         agent.SetDestination(targetTransform.position);
+        animator.Play("Spotted player");
         rotateToTarget();
+    }
+
+    private void idle()
+    {
+        agent.isStopped = true;
+        animator.Play("No players spotted");
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        if (triesToTarget)
+        if (triesToTarget && self.playerInRadius)
         {
             moveToTarget();
+        }
+        else if (triesToTarget && !self.playerInRadius)
+        {
+            idle();
         }
     }
 }
