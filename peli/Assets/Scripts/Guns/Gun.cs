@@ -13,9 +13,11 @@ public class Gun : MonoBehaviour
     public float fireDelay;
     public int magazineSize;
     public bool automatic;
+    public AudioClip shootSfx;
+    public AudioClip emptyClipSfx;
 
-    private AudioSource audioSource;
     private float currentFireDelay;
+    private float sfxVolume = 0.55f;
 
     [System.NonSerialized]
     public int remainingBullets;
@@ -25,7 +27,6 @@ public class Gun : MonoBehaviour
     {
         remainingBullets = magazineSize;
         currentFireDelay = fireDelay;
-        audioSource = GetComponent<AudioSource>();
         // Reset ammo counter
         ammoUIManager.setCurrentAmmo(magazineSize); ammoUIManager.setMaxAmmo(magazineSize);
     }
@@ -33,15 +34,19 @@ public class Gun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (checkCanFire() && checkWantsToFire())
+        if (remainingBullets <= 0 && checkWantsToFire())
         {
-            doGunSound();
+            doSound(emptyClipSfx, (float)sfxVolume);
+        }
+        else if (checkCanFire() && checkWantsToFire())
+        {
+            doSound(shootSfx, (float)sfxVolume);
             doMuzzleFlash();
             --remainingBullets;
             ammoUIManager.setCurrentAmmo(remainingBullets);
             onFireEvent.Invoke();
             currentFireDelay = fireDelay;
-        };
+        }
         currentFireDelay -= Time.deltaTime;
     }
 
@@ -62,9 +67,9 @@ public class Gun : MonoBehaviour
         return currentFireDelay > 0f || remainingBullets <= 0 ? false : true;
     }
 
-    void doGunSound()
+    void doSound(AudioClip clip, float volume)
     {
-        audioSource.Play();
+        AudioSource.PlayClipAtPoint(clip, transform.position, (float)volume);
     }
 
     void doMuzzleFlash()
