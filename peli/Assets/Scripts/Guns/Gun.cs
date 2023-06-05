@@ -24,13 +24,14 @@ public class Gun : MonoBehaviour
         remainingBullets = magazineSize;
         currentFireDelay = fireDelay;
         audioSource = GetComponent<AudioSource>();
-        ammoUIManager.setMaxAmmo(magazineSize);
+        // Reset ammo counter
+        ammoUIManager.setCurrentAmmo(magazineSize); ammoUIManager.setMaxAmmo(magazineSize);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (checkCanFire())
+        if (checkCanFire() && checkWantsToFire())
         {
             doGunSound();
             --remainingBullets;
@@ -38,17 +39,11 @@ public class Gun : MonoBehaviour
             onFireEvent.Invoke();
             currentFireDelay = fireDelay;
         }
-        else
-        {
-            Debug.Log("Tried to shoot... couldn't. LOL!");
-        }
         currentFireDelay -= Time.deltaTime;
     }
 
-    bool checkCanFire()
+    bool checkWantsToFire()
     {
-        if (currentFireDelay > 0f || remainingBullets <= 0) return false;
-
         if (automatic)
         {
             if (Input.GetMouseButton(0)) return true;
@@ -57,6 +52,11 @@ public class Gun : MonoBehaviour
         if (Input.GetMouseButtonDown(0)) return true;
 
         return false;
+    }
+
+    bool checkCanFire()
+    {
+        return currentFireDelay > 0f || remainingBullets <= 0 ? false : true;
     }
 
     void doGunSound()
