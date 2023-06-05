@@ -6672,6 +6672,8 @@ MonoBehaviour:
   gravity: -9.8
   jumpHeight: 1
   runningSpeedBoost: 1.5
+  deltaSinceStopSprinting: 0
+  staminaRegenerationTimeout: 2
 --- !u!114 &908059588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9663,7 +9665,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   fireDelay: 0.2
-  automatic: 1
+  magazineSize: 0
+  automatic: 0
 --- !u!82 &1361471999
 AudioSource:
   m_ObjectHideFlags: 0

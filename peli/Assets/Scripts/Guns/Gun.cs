@@ -44,10 +44,9 @@ public class Gun : MonoBehaviour
         {
             if (Input.GetMouseButton(0)) return true;
         }
-        else
-        {
-            if (Input.GetMouseButtonDown(0)) return true;
-        }
+
+        if (Input.GetMouseButtonDown(0)) return true;
+
         return false;
     }
 
