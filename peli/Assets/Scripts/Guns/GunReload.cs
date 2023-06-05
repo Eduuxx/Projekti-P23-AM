@@ -5,6 +5,7 @@ using UnityEngine;
 public class GunReload : MonoBehaviour
 {
     private Gun gun;
+    public float reloadDelayInSeconds = 2.2f;
     public AudioClip reloadSfx;
     void Start()
     {
@@ -21,8 +22,8 @@ public class GunReload : MonoBehaviour
 
     IEnumerator reloadGun()
     {
-        doReloadSound(0.45);
-        yield return new WaitForSeconds(1.5f);
+        doReloadSound(0.6);
+        yield return new WaitForSeconds(reloadDelayInSeconds);
         gun.remainingBullets = gun.magazineSize;
         gun.ammoUIManager.setMaxAmmo(gun.magazineSize);
         gun.ammoUIManager.setCurrentAmmo(gun.remainingBullets);
