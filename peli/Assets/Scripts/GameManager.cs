@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-
     public static GameManager gameManager { get; private set; }
 
-    public HealthScript _playerHealth = new HealthScript(100, 100);
+    public Entity playerEntity;
+
+    void Start()
+    {
+        playerEntity = GetComponent<Entity>();
+    }
 
     void Awake()
     {
