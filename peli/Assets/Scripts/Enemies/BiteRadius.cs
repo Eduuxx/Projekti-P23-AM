@@ -22,6 +22,7 @@ public class BiteRadius : MonoBehaviour
         {
             if (playerInRadius != null)
             {
+                Debug.Log("Pelaaja tarpeeksi lähellä purtavaksi!");
                 playerInRadius.takeDamage(29); // Remove fifteen damage from player
                 playerInRadius.updateHealthBar();
                 yield return new WaitForSeconds(1); // Execute this func only every second
