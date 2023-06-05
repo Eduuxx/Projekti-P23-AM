@@ -8,6 +8,8 @@ public class Gun : MonoBehaviour
     // Publics
     public UnityEvent onFireEvent;
     public AmmoScript ammoUIManager;
+    public GameObject muzzleFlashPrefab;
+    public Transform barrelTransform;
     public float fireDelay;
     public int magazineSize;
     public bool automatic;
@@ -34,11 +36,12 @@ public class Gun : MonoBehaviour
         if (checkCanFire() && checkWantsToFire())
         {
             doGunSound();
+            doMuzzleFlash();
             --remainingBullets;
             ammoUIManager.setCurrentAmmo(remainingBullets);
             onFireEvent.Invoke();
             currentFireDelay = fireDelay;
-        }
+        };
         currentFireDelay -= Time.deltaTime;
     }
 
@@ -62,5 +65,11 @@ public class Gun : MonoBehaviour
     void doGunSound()
     {
         audioSource.Play();
+    }
+
+    void doMuzzleFlash()
+    {
+        GameObject flash = Instantiate(muzzleFlashPrefab, barrelTransform.position, Quaternion.identity);
+        Destroy(flash, 0.1f);
     }
 }

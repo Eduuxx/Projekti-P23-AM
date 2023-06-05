@@ -7795,7 +7795,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1109519684}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1952, y: 0.0757, z: -0.0011}
+  m_LocalPosition: {x: -0.2265, y: 0.076, z: -0.0011}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9768,6 +9768,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ammoUIManager: {fileID: 443032286}
+  muzzleFlashPrefab: {fileID: 748781637555137343, guid: 0cf7a2b8a8bf3424ca855eed0216a54b, type: 3}
+  barrelTransform: {fileID: 1109519685}
   fireDelay: 0.2
   magazineSize: 13
   automatic: 0
@@ -9879,6 +9881,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d22f8757465bca489f39d09a4c28415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reloadDelayInSeconds: 2.2
   reloadSfx: {fileID: 8300000, guid: 11b8f903c60f4f24aaab92ce9dd2193a, type: 3}
 --- !u!1001 &1375101716
 PrefabInstance:
