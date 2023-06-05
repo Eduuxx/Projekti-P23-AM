@@ -34,11 +34,19 @@ public class Enemy : Entity
         this.spawner = spawner;
     }
 
+    public void incrementKills()
+    {
+        int oldKills = int.Parse(GameObject.Find("KillCounter").GetComponent<UnityEngine.UI.Text>().text);
+        GameObject.Find("KillCounter").GetComponent<UnityEngine.UI.Text>().text = (oldKills + 1).ToString();
+    }
+
     public override void onDeath() 
     {
         aiController.triesToTarget = false;
         biter.triesToBite = false;
         collider.enabled = false;
         animator.Play("Died");
+
+        incrementKills();
     }
 }
