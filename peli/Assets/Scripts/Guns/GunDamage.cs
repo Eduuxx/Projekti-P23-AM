@@ -13,6 +13,8 @@ public class GunDamage : MonoBehaviour
     private TrailRenderer BulletTrail;
     [SerializeField]
     private Transform BulletSpawnPoint;
+    [SerializeField]
+    private ParticleSystem ImpactParticleSystem;
 
     // Start is called before the first frame update
     void Start()
@@ -57,6 +59,7 @@ public class GunDamage : MonoBehaviour
         }
 
         Trail.transform.position = Hit.point;
+        Instantiate(ImpactParticleSystem, Hit.point, Quaternion.LookRotation(Hit.normal));
         Destroy(Trail.gameObject, Trail.time);
     }
 }
