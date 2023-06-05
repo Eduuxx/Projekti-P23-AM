@@ -9879,6 +9879,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d22f8757465bca489f39d09a4c28415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reloadSfx: {fileID: 8300000, guid: e7632c6401c09437e83de45d33c5858e, type: 3}
 --- !u!1001 &1375101716
 PrefabInstance:
   m_ObjectHideFlags: 0
