@@ -31,7 +31,6 @@ public class BiteRadius : MonoBehaviour
 
             if (playerInRadius != null)
             {
-                Debug.Log("Pelaaja tarpeeksi lähellä purtavaksi!");
                 playerInRadius.takeDamage(29); // Remove fifteen damage from player
                 playerInRadius.updateHealthBar();
                 yield return new WaitForSeconds(1); // Execute this func only every second
@@ -41,12 +40,10 @@ public class BiteRadius : MonoBehaviour
     } 
 
     void OnTriggerEnter(Collider other) {
-        Debug.Log(other.tag);
         if (other.tag == "Player") playerInRadius = other.gameObject.GetComponentInParent<Player>();
     }
  
     void OnTriggerExit(Collider other) {
         if (other.tag == "Player") playerInRadius = null;
     }
-
 }
