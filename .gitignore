@@ -68,3 +68,7 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /peli/[Aa]ssets/[Ss]treamingAssets/aa.meta
 /peli/[Aa]ssets/[Ss]treamingAssets/aa/*
+peli/Assets/LowPolyWeapons_LITE/LowPolyWeaponsLite_2020.3.0_HDRP_v1.0.unitypackage.meta
+peli/Assets/LowPolyWeapons_LITE/LowPolyWeaponsLite_2020.3.0_URP_v1.0.unitypackage.meta
+peli/Assets/Polytope Studio/Lowpoly_Environments/SRP/PT_Nature_Free_URP_10.10.1.unitypackage.meta
+peli/Assets/Polytope Studio/Lowpoly_Environments/SRP/PT_Nature_Free_URP_12.1.10.unitypackage.meta
