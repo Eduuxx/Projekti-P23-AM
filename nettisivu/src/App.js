@@ -17,16 +17,16 @@ function App() {
         NIGHTFALL
       </div>
       <div className="w-full flex justify-center mt-44 gap-44">
-        <div className="p-4 bg-midnight/70 rounded-xl flex flex-col gap-8 items-center">
+        <div className="p-4 bg-midnight/30 rounded-xl flex flex-col gap-8 items-center rounded-b-none border-b-2 border-lime-400">
           <img src={PistolImg} width="200px" />
           <div className="w-[320px] text-white">
-            Use multiple different and unique weapons
+            State of the art gunplay mechanics for handling zombies
           </div>
         </div>
-        <div className="p-4 bg-midnight/70 rounded-xl flex flex-col gap-8 items-center">
+        <div className="p-4 bg-midnight/30 rounded-xl flex flex-col gap-8 items-center rounded-b-none border-b-2 border-lime-400">
           <img src={ZombieImg} width="200px" />
           <div className="w-[320px] text-white">
-            Eliminate as many zombies as possible without dying
+            Zombies who had a taste of blood and they want MORE
           </div>
         </div>
       </div>
