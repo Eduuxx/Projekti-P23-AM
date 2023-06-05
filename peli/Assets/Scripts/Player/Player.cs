@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : Entity
 {
@@ -48,5 +49,10 @@ public class Player : Entity
     public void updateStaminaBar()
     {
         _staminaBar.SetStamina((float) stamina);
+    }
+
+    public override void onDeath()
+    {
+        SceneManager.LoadScene("Menu");
     }
 }
