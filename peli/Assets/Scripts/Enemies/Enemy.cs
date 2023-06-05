@@ -37,7 +37,7 @@ public class Enemy : Entity
     public void incrementKills()
     {
         int oldKills = int.Parse(GameObject.Find("KillCounter").GetComponent<UnityEngine.UI.Text>().text);
-        GameObject.Find("KillCounter").GetComponent<UnityEngine.UI.Text>().text = (oldKills + 1).ToString();
+        GameObject.Find("KillCounter").GetComponent<UnityEngine.UI.Text>().text = (++oldKills).ToString();
     }
 
     public override void onDeath() 
