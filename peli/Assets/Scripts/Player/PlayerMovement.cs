@@ -24,6 +24,11 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 crouchScale = new Vector3(1, 0.5f, 1);
     private Vector3 playerScale = new Vector3(1, 1f, 1);
 
+    // Timeout after sprinting before regenerating stamina
+    private bool wasSprinting = false;
+    public float deltaSinceStopSprinting = 0.0f;
+    public float staminaRegenerationTimeout = 2.0f; // 2 seconds
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        deltaSinceStopSprinting += Time.deltaTime;
         isGrounded = controller.isGrounded;
 
         if (Input.GetKeyDown(KeyCode.LeftControl))
@@ -65,6 +71,7 @@ public class PlayerMovement : MonoBehaviour
 
                 playerEntity.takeStamina((float)0.4);
                 playerEntity.updateStaminaBar();
+                wasSprinting = true;
             }
             else currentSpeed = walkSpeed;
         }
@@ -76,9 +83,16 @@ public class PlayerMovement : MonoBehaviour
 
         else 
         {
-            currentSpeed = 4f;
-            playerEntity.giveStamina((float)0.2);
-            playerEntity.updateStaminaBar();
+            if (wasSprinting) {
+                wasSprinting = false;
+                deltaSinceStopSprinting = 0.0f;
+            }
+
+            if (deltaSinceStopSprinting > staminaRegenerationTimeout) {
+                currentSpeed = 4f;
+                playerEntity.giveStamina((float)0.2);
+                playerEntity.updateStaminaBar();
+            }
         }
 
         Vector3 moveDirection = Vector3.zero;
