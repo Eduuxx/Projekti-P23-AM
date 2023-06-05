@@ -59,7 +59,8 @@ public class GunDamage : MonoBehaviour
         }
 
         Trail.transform.position = Hit.point;
-        Instantiate(ImpactParticleSystem, Hit.point, Quaternion.LookRotation(Hit.normal));
+        ParticleSystem impact = Instantiate(ImpactParticleSystem, Hit.point, Quaternion.LookRotation(Hit.normal));
         Destroy(Trail.gameObject, Trail.time);
+        Destroy(impact.gameObject, 5f);
     }
 }
