@@ -6726,8 +6726,8 @@ RectTransform:
   m_GameObject: {fileID: 938540317}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3125, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 443032285}
   m_RootOrder: 0
@@ -7952,8 +7952,8 @@ RectTransform:
   m_GameObject: {fileID: 1154948971}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.31265622, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 443032285}
   m_RootOrder: 1
@@ -9883,6 +9883,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   reloadDelayInSeconds: 2.2
   reloadSfx: {fileID: 8300000, guid: 11b8f903c60f4f24aaab92ce9dd2193a, type: 3}
+  isReloading: 0
 --- !u!1001 &1375101716
 PrefabInstance:
   m_ObjectHideFlags: 0
