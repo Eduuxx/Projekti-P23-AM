@@ -7,6 +7,8 @@ public class Gun : MonoBehaviour
 {
     // Publics
     public UnityEvent onFireEvent;
+    private AudioSource audioSource;
+    private AudioClip gunSound = null;
     public float fireDelay;
     public bool automatic;
 
@@ -16,6 +18,7 @@ public class Gun : MonoBehaviour
     void Start()
     {
         currentFireDelay = fireDelay;
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -38,6 +41,8 @@ public class Gun : MonoBehaviour
             {
                 if (currentFireDelay <= 0f)
                 {
+                    Debug.Log("Succesful gun fire!");
+                    audioSource.Play();
                     onFireEvent.Invoke();
                     currentFireDelay = fireDelay;
                 }
