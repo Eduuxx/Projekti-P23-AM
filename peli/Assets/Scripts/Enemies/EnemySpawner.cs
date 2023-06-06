@@ -26,7 +26,6 @@ public class EnemySpawner : MonoBehaviour
         yield return new WaitForSeconds(spawnDelay);
         if (currentEnemies < maxEnemies)
         {
-
             // Calculate a random position within a sphere around the transform position
             Vector3 randomSpreadOffset = Random.insideUnitSphere * 2;
             randomSpreadOffset.y = 0; // Ignore the y-coordinate to keep enemies on the ground level

@@ -43,7 +43,6 @@ public class Enemy : Entity
             spawner.DecreaseEnemyCount(); // Notify the spawner when the enemy is destroyed
         }
 
-        Debug.Log("Zombie died ???");
         aiController.triesToTarget = false;
         biter.triesToBite = false;
         collider.enabled = false;
