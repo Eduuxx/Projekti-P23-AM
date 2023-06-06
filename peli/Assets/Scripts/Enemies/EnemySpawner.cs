@@ -5,8 +5,8 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
-    public int maxEnemies = 10;
-    public float spawnDelay = 2f;
+    public int maxEnemies = 3;
+    public float spawnDelay = 5f;
     public bool playersInRadius = false;
 
     private int currentEnemies = 0;
@@ -16,18 +16,19 @@ public class EnemySpawner : MonoBehaviour
     {
         if (playersInRadius && !isSpawningOnCooldown)
         {
+            isSpawningOnCooldown = true;
             StartCoroutine(spawnEnemy());
         }
     }
 
-    private IEnumerator spawnEnemy()
+    IEnumerator spawnEnemy()
     {
+        yield return new WaitForSeconds(spawnDelay);
         if (currentEnemies < maxEnemies)
         {
-            isSpawningOnCooldown = true;
 
             // Calculate a random position within a sphere around the transform position
-            Vector3 randomSpreadOffset = Random.insideUnitSphere * 30;
+            Vector3 randomSpreadOffset = Random.insideUnitSphere * 2;
             randomSpreadOffset.y = 0; // Ignore the y-coordinate to keep enemies on the ground level
 
             Vector3 spawnPosition = transform.position + randomSpreadOffset;
@@ -37,8 +38,6 @@ public class EnemySpawner : MonoBehaviour
             enemyScript.SetSpawner(this); // Pass a reference to the spawner to the enemy
 
             currentEnemies++;
-
-            yield return new WaitForSeconds(spawnDelay);
 
             isSpawningOnCooldown = false;
         }

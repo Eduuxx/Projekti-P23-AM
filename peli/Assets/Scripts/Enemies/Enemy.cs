@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,6 +13,8 @@ public class Enemy : Entity
     [System.NonSerialized]
     public Player playerInRadius = null;
 
+    private float bodyDestroyDelay = 10f;
+
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -19,14 +23,6 @@ public class Enemy : Entity
         collider = GetComponent<CapsuleCollider>();
         this.maxHP = 100;
         HP = maxHP;
-    }
-
-    private void OnDestroy()
-    {
-        if (spawner != null)
-        {
-            spawner.DecreaseEnemyCount(); // Notify the spawner when the enemy is destroyed
-        }
     }
 
     public void SetSpawner(EnemySpawner spawner)
@@ -42,11 +38,24 @@ public class Enemy : Entity
 
     public override void onDeath() 
     {
+        if (spawner != null)
+        {
+            spawner.DecreaseEnemyCount(); // Notify the spawner when the enemy is destroyed
+        }
+
+        Debug.Log("Zombie died ???");
         aiController.triesToTarget = false;
         biter.triesToBite = false;
         collider.enabled = false;
         animator.Play("Died");
 
         incrementKills();
+        StartCoroutine(destroyBody()); // Destroy body after 10 seconds
+    }
+
+    IEnumerator destroyBody() 
+    {
+        yield return new WaitForSeconds(bodyDestroyDelay);
+        Destroy(gameObject);
     }
 }
